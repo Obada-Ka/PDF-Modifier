@@ -1,1 +1,137 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@ng-select/ng-select/themes/material.theme.css";
+.draw_line {
+  position: relative;
+}
+
+.draw_line::before {
+  position: absolute;
+  left: -1.5px;
+  content: "";
+  height: 30px;
+  border-left: 3px solid red;
+  transform: rotate(90deg);
+  top: -14px;
+}
+
+.draw_line::after {
+  position: absolute;
+  right: 1.5px;
+  content: "";
+  height: 30px;
+  border-left: 3px solid red;
+  transform: rotate(90deg);
+  bottom: -14px;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.chosen_line {
+  position: relative;
+}
+
+.chosen_line::before {
+  position: absolute;
+  left: -1.5px;
+  content: "";
+  height: 30px;
+  border-left: 3px solid #f1de2e;
+  transform: rotate(90deg);
+  top: -14px;
+}
+
+.chosen_line::after {
+  position: absolute;
+  right: 1.5px;
+  content: "";
+  height: 30px;
+  border-left: 3px solid #f1de2e;
+  transform: rotate(90deg);
+  bottom: -14px;
+}
+
+.drawing-mode {
+  cursor: cell;
+}
+
+.in-drawing-mode .line,
+.in-drawing-mode .draw_point,
+.in-drawing-mode .draw_line,
+.in-drawing-mode .draw_polygonal,
+.in-drawing-mode .draw_rectangle,
+.in-drawing-mode .ng-draggable {
+  pointer-events: none !important;
+}
+
+.in-drawing-mode-parent .line,
+.in-drawing-mode-parent .draw_point,
+.in-drawing-mode-parent .draw_line,
+.in-drawing-mode-parent .draw_polygonal,
+.in-drawing-mode-parent .draw_rectangle,
+.in-drawing-mode-parent .ng-draggable {
+  pointer-events: none !important;
+}
+
+.in-select-mode {
+  cursor: text;
+}
+
+.in-drawing-mode .polygonal-root {
+  pointer-events: auto;
+}
+
+.in-preview-mode .envelope,
+.in-preview-mode .envelope .windowOne,
+.in-preview-mode .envelope .windowTwo,
+.in-preview-mode .envelope .windowThree {
+  display: block !important;
+}
+
+.ng-draggable {
+  cursor: move;
+}
+
+.drag-mask {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: transparent;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+}
+
+.hidden_mask {
+  z-index: -2;
+}
+
+.display_mask {
+  z-index: 2;
+}
+
+.red {
+  color: #444;
+  background-color: #fc664b;
+}
+
+.green {
+  color: #444;
+  background-color: #83fc4b;
+}
+
+.blue {
+  color: #444;
+  background-color: #4b89fc;
+}
+
+.hide-text {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

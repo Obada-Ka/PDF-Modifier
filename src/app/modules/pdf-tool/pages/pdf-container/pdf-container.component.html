@@ -1,0 +1,153 @@
+<div id="root">
+  <div
+    *ngIf="uploadOption && configDrawingMode.differentSelectDrawPages"
+    class="ctrl"
+  >
+    <span class="nortification animateOpen"
+      >La forma è disegnata in una pagina diversa!</span
+    >
+  </div>
+  <nav
+    *ngIf="uploadOption && !toolsMini && configDrawingMode.mode != 'Preview'"
+    class="navbar sticky-top navbar-expand-lg navbar-light bg-light custom-style"
+  >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <ng-container *ngIf="configDrawingMode.mode === 'Drawing'">
+          <li
+            class="nav-item"
+            [ngClass]="{
+              'nav-item': tools,
+              disabled: !tools,
+              'active-action': optionDraw == configDrawingMode.tool.toolName
+            }"
+            style="border-right: 1px solid #898e7361"
+          >
+            <a
+              class="nav-link"
+              (click)="activateDrawing(configDrawingMode.tool.toolName)"
+              ><span style="padding: 5px" class="fa fa-ruler-combined"></span
+              >{{ configDrawingMode.tool.toolLabel }}</a
+            >
+          </li>
+        </ng-container>
+        <ng-container *ngIf="configDrawingMode.mode === 'selectText'">
+          <ng-container *ngFor="let type of configDrawingMode.labels">
+            <li
+              [ngClass]="{ 'nav-item': tools, disabled: !tools }"
+              (click)="activateDrawing(type.key)"
+              style="
+                border-right: 1px solid #898e7361;
+                padding: 0px 10px 0px 10px;
+              "
+            >
+              <a
+                class="nav-link {{ type.color }}"
+                [ngClass]="{ active: optionDraw == type.key }"
+              >
+                <span class="fa fa-circle" style="padding: 5px"> </span
+                >{{ type.label }}
+              </a>
+            </li>
+          </ng-container>
+        </ng-container>
+        <ng-container>
+          <li class="nav-item">
+            <a class="nav-link" (click)="zoomInOut(-0.1)"
+              ><i class="fa fa-search-minus"></i
+            ></a>
+          </li>
+          <li class="nav-item">
+            <input
+              [value]="zoomValue"
+              class="zooming-page-value"
+              type="number"
+              max="220"
+              accuracy="2"
+              min="-220"
+              placeholder="0.0%"
+              (keydown.enter)="getZoomingValue($event)"
+            />
+          </li>
+          <li class="nav-item" style="border-right: 1px solid #898e7361">
+            <a class="nav-link" (click)="zoomInOut(0.1)"
+              ><i class="fa fa-search-plus"></i
+            ></a>
+          </li>
+          <!--paginator-->
+          <li class="nav-item" [ngClass]="{ disabled: specificPageToShow }">
+            <a class="nav-link" (click)="changePage(-1)"
+              ><i class="fa fa-reply"></i
+            ></a>
+          </li>
+          <li class="nav-item" [ngClass]="{ disabled: specificPageToShow }">
+            <input
+              [value]="pageNumber"
+              class="zooming-page-value"
+              type="number"
+              [max]="totalPageNumber"
+              accuracy="2"
+              min="1"
+              placeholder="1"
+              (keydown.enter)="getPageNumber($event)"
+            />
+          </li>
+          <li
+            class="nav-item"
+            style="border-right: 1px solid #898e7361; margin-right: 10px"
+            [ngClass]="{ disabled: specificPageToShow }"
+          >
+            <a class="nav-link" (click)="changePage(1)"
+              ><i class="fa fa-share"></i
+            ></a>
+          </li>
+          <li
+            (click)="minimizeElement()"
+            class="close-custom"
+            style="margin-left: 10px"
+          >
+            <button type="button" class="close m-auto" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </nav>
+
+  <div *ngIf="toolsMini" class="custom-style-minimize">
+    <a (click)="minimizeElement('toolsMini')"
+      ><span class="fa fa-edit"></span
+    ></a>
+  </div>
+
+  <div
+    [ngClass]="{
+      'drawing-mode': configDrawingMode.mode === 'Drawing',
+      'in-select-mode': configDrawingMode.mode === 'selectText',
+      'in-preview-mode': configDrawingMode.mode === 'Preview' && tools
+    }"
+  >
+    <!-- (newPageLoaded)="checkFirstPageLoaded($event)" [scalling]="scaleXY" -->
+    <app-page-generator
+      (DataLoaded)="checkDataLoaded($event)"
+      [file]="selectedFile"
+      [scalling]="scaleXY"
+    >
+    </app-page-generator>
+    <div class="drawn_shapes" ngDraggable *ngIf="showPaints">
+      <app-modifications-lists></app-modifications-lists>
+    </div>
+  </div>
+</div>

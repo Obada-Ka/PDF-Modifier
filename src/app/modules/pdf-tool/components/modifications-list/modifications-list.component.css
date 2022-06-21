@@ -1,0 +1,80 @@
+.shapes {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  background: white;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table td {
+  border: none !important;
+}
+
+.table thead th {
+  border: none !important;
+}
+
+.table-custom {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  max-height: 500px;
+}
+
+@supports (-moz-appearance: none) {
+  .table-custom {
+    max-height: 100%;
+  }
+}
+
+.rowColorSelected {
+  background-color: #f1de2e !important;
+}
+
+.even {
+  background-color: azure;
+}
+.odd {
+  background-color: floralwhite;
+}
+
+.custom-close-button {
+  left: 90%;
+  top: -28px;
+  z-index: 3;
+  font-size: 20px;
+  margin: 20px;
+  background-color: #000000 !important;
+  position: absolute;
+  cursor: pointer;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 29px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+}
+
+.custom-style-minimize {
+  z-index: 2;
+  padding: 4px 8px 4px 8px;
+  font-size: 20px;
+  background-color: #f1de2e !important;
+  position: fixed;
+  cursor: pointer;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 29px;
+}

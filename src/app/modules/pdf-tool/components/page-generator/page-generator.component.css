@@ -1,0 +1,210 @@
+.envelope {
+  /* width: 41%; */
+  position: relative;
+  display: none;
+  z-index: 2;
+  pointer-events: none;
+  /* top: 16px;
+  left: 29%;
+  height: 13%;
+  border: 2px solid #000000; */
+}
+
+.windowOne {
+  width: 41%;
+  position: absolute;
+  display: none;
+  z-index: 2;
+  top: 22%;
+  left: 5%;
+  height: 24%;
+  border: 2px solid #000000;
+}
+
+.windowTwo {
+  width: 35%;
+  position: absolute;
+  display: none;
+  z-index: 2;
+  top: 55%;
+  left: 9%;
+  height: 37%;
+  border: 2px solid #000000;
+}
+
+.windowThree {
+  width: 44%;
+  position: absolute;
+  display: none;
+  z-index: 2;
+  top: 48%;
+  left: 50%;
+  height: 50%;
+  border: 2px solid #000000;
+}
+
+.tool {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.load-text {
+  padding-top: 20px;
+  text-align: center;
+  font: 20pt "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: lighten(#6767fa, 75%);
+  position: relative;
+  top: 4%;
+  left: 0%;
+}
+
+.flex {
+  min-height: 60pt;
+  position: fixed;
+  left: 48%;
+  top: 40%;
+}
+
+.loading {
+  display: inline-block;
+  border-width: 30px;
+  width: 50pt;
+  height: 50pt;
+  border-radius: 50%;
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  -o-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+.style-3 {
+  border-style: double;
+  border-color: #444 #f1de2e #f1de2e;
+}
+
+.dot-pulse {
+  position: relative;
+  left: -9999px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #feda44;
+  color: #feda44;
+  box-shadow: 9999px 0 0 -5px #feda44;
+  animation: dotPulse 1.5s infinite linear;
+  animation-delay: 0.25s;
+}
+
+.loader-pos {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  z-index: 1;
+}
+
+.dot-pulse::before,
+.dot-pulse::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #feda44;
+  color: #feda44;
+}
+
+.dot-pulse::before {
+  box-shadow: 9984px 0 0 -5px #feda44;
+  animation: dotPulseBefore 1.5s infinite linear;
+  animation-delay: 0s;
+}
+
+.dot-pulse::after {
+  box-shadow: 10014px 0 0 -5px #feda44;
+  animation: dotPulseAfter 1.5s infinite linear;
+  animation-delay: 0.5s;
+}
+
+.container-loader {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f7f4f4;
+  position: absolute;
+  z-index: 2;
+}
+
+@keyframes dotPulseBefore {
+  0% {
+    box-shadow: 9984px 0 0 -5px #feda44;
+  }
+  30% {
+    box-shadow: 9984px 0 0 2px #feda44;
+  }
+  60%,
+  100% {
+    box-shadow: 9984px 0 0 -5px #feda44;
+  }
+}
+
+@keyframes dotPulse {
+  0% {
+    box-shadow: 9999px 0 0 -5px #feda44;
+  }
+  30% {
+    box-shadow: 9999px 0 0 2px #feda44;
+  }
+  60%,
+  100% {
+    box-shadow: 9999px 0 0 -5px #feda44;
+  }
+}
+
+@keyframes dotPulseAfter {
+  0% {
+    box-shadow: 10014px 0 0 -5px #feda44;
+  }
+  30% {
+    box-shadow: 10014px 0 0 2px #feda44;
+  }
+  60%,
+  100% {
+    box-shadow: 10014px 0 0 -5px #feda44;
+  }
+}
+
+#toolsContainer {
+  position: absolute;
+  left: 393px;
+  top: 43px;
+  height: 1056px;
+  width: 795px;
+  z-index: -2;
+  transform-origin: 50% 0px;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(359deg);
+  }
+}
+
+@-o-keyframes spin {
+  100% {
+    -moz-transform: rotate(359deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(359deg);
+  }
+}

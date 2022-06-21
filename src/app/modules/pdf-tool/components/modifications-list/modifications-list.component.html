@@ -1,0 +1,138 @@
+<div id="drawnShapes" style="cursor: move">
+  <div *ngIf="paintsMini" class="custom-style-minimize">
+    <a (click)="minimizeElement()"><span class="fa fa-cogs"></span></a>
+  </div>
+  <ng-container *ngIf="!selectMode">
+    <div class="shapes" *ngIf="drawnShapes.length && !paintsMini">
+      <div
+        *ngIf="drawnShapes.length && !paintsMini"
+        class="custom-close-button"
+      >
+        <button
+          type="button"
+          class="close m-auto"
+          style="color: white"
+          aria-label="Close"
+          (click)="minimizeElement()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div
+        class="table-responsive table-custom"
+        style="border-top-left-radius: 10px; border-top-right-radius: 10px"
+      >
+        <table
+          class="table table-bordered table-striped"
+          style="color: #5e6263"
+        >
+          <thead style="background: black; color: white; font-size: 12px">
+            <tr>
+              <th>Shape Type</th>
+              <th>Shape Length</th>
+              <th>Page Number</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody style="font-size: 14px">
+            <ng-container
+              *ngFor="
+                let shape of drawnShapes;
+                let i = index;
+                let o = odd;
+                let e = even
+              "
+            >
+              <tr
+                (click)="scorllToShapeText(shape, i)"
+                [ngClass]="{
+                  odd: o,
+                  even: e,
+                  rowColorSelected: selectedRow == i,
+                  disabled: shape.differentSelectDrawPages
+                }"
+                [id]="i"
+                style="cursor: pointer; text-align: center"
+              >
+                <td>{{ shape.type }}</td>
+                <td>{{ shape.length }}</td>
+                <td>{{ shape.pageNumber }}</td>
+                <td>
+                  <span
+                    class="fa fa-trash"
+                    (click)="deleteShape(shape, i)"
+                  ></span>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="selectMode">
+    <div class="shapes" *ngIf="selectedTextValues.length && !paintsMini">
+      <div
+        *ngIf="selectedTextValues.length && !paintsMini"
+        class="custom-close-button"
+      >
+        <button
+          type="button"
+          class="close m-auto"
+          style="color: white"
+          aria-label="Close"
+          (click)="minimizeElement()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="table-responsive table-custom">
+        <table
+          class="table table-bordered table-striped"
+          style="color: #5e6263"
+        >
+          <thead style="background: black; color: white; font-size: 12px">
+            <tr>
+              <th>Text Type</th>
+              <th style="max-width: 150px">Text Value</th>
+              <th>Page Number</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody style="font-size: 14px">
+            <ng-container
+              *ngFor="
+                let text of selectedTextValues;
+                let i = index;
+                let o = odd;
+                let e = even
+              "
+            >
+              <tr
+                (click)="scorllToShapeText(text, i)"
+                [ngClass]="{
+                  odd: o,
+                  even: e,
+                  rowColorSelected: selectedRow == i
+                }"
+                [id]="i"
+                style="cursor: pointer; text-align: center"
+              >
+                <td>{{ text.type }}</td>
+                <td style="max-width: 150px">{{ text.value }}</td>
+                <td>{{ text.pageNumber }}</td>
+                <td>
+                  <span
+                    class="fa fa-trash"
+                    (click)="deleteText(text, i)"
+                  ></span>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+</div>

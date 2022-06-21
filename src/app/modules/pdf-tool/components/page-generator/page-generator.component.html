@@ -1,0 +1,73 @@
+<div
+  class="container_pdf"
+  id="container_pdf"
+  [style.transform]="scaleXY"
+  style="transform-origin: 50% 0px"
+>
+  <div class="container-loader" *ngIf="loader">
+    <div class="snippet loader-pos" data-title=".dot-pulse">
+      <div class="stage">
+        <div class="dot-pulse"></div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container>
+    <!-- <div class="envelope" style="pointer-events: none;">
+        <div class="windowOne"></div>
+        <div class="windowTwo"></div>
+        <div class="windowThree"></div>
+      </div> -->
+    <div class="envelope">
+      <ng-container *ngIf="previewDataHolder">
+        <div
+          [ngStyle]="{
+            height: previewDataHolder.envelope.value.height * 3.77 + 'px',
+            width: previewDataHolder.envelope.value.width * 3.77 + 'px',
+            border: '2px solid #000000',
+            position: 'absolute',
+            'z-index': '2',
+            left: previewDataHolder.envelope.value.left * 3.77 + 'px',
+            top: previewDataHolder.envelope.value.top * 3.77 + 'px'
+          }"
+        >
+          <ng-container
+            *ngFor="let hole of previewDataHolder.envelope.value.data"
+          >
+            <div
+              [ngStyle]="{
+                height: hole.value.height * 3.77 + 'px',
+                width: hole.value.width * 3.77 + 'px',
+                border: '2px solid #000000',
+                position: 'absolute',
+                'z-index': '2',
+                left: hole.value.left * 3.77 + 'px',
+                top: hole.value.top * 3.77 + 'px'
+              }"
+            ></div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng2-pdfjs-viewer
+    viewerId="MyPdf"
+    #pdfViewerOnDemand
+    (onDocumentLoad)="testPagesLoaded($event)"
+    (onPageChange)="testPageChange($event)"
+    [zoom]="zoomingValue"
+    [openFile]="false"
+    [viewBookmark]="false"
+    [showSpinner]="true"
+    [download]="false"
+  >
+  </ng2-pdfjs-viewer>
+
+  <app-draw-point [eventDataPassed]="eventData" class="tool"></app-draw-point>
+  <app-draw-line class="tool"></app-draw-line>
+  <app-draw-polygonal class="tool"></app-draw-polygonal>
+  <app-draw-full-rectangle
+    [eventDataPassed]="eventData"
+    class="tool"
+  ></app-draw-full-rectangle>
+</div>
