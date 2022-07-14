@@ -1,0 +1,23 @@
+<div class="drag-mask" [ngClass] = "{ 'hidden_mask':hide , 'display_mask': !hide }" 
+[id] = "dargMaskId"></div>
+<div ngDraggable (started) = "dragStarted($event)" 
+    (stopped)="dragEnded($event)"
+    [position] = "containerPosition"
+    (movingOffset)="draggingShape($event)" 
+    (endOffset) = "changeExacPos($event)"
+    [scale] = "scaleValueforTool"
+    >
+    <ng-container #lineContainer> 
+    </ng-container>
+
+    <span *ngIf="exactPos[0].endX" [ngStyle]="{'position': 'absolute', 'top':exactPos[0].endY+'px', 'left':exactPos[0].endX+'px',  'pointer-events': 'none',
+        'margin': '1px',
+        'padding': '5px',
+        'font-size': '12px',
+        'width': '143px',
+        'color': 'white',
+        'background-color': valuesBackgroundColor }"
+        >
+        {{ 'X: '+exactPos[0].offsetX +',&nbsp; Y: ' + exactPos[0].offsetY + ',&nbsp; H: ' + exactPos[0].height }}
+    </span>
+</div>

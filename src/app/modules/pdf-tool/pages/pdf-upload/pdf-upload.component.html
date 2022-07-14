@@ -1,0 +1,28 @@
+<div class="full-window">
+  <div class="container-upload">
+    <form class="form">
+      <div class="file-upload-wrapper" [attr.data-text]="fileName">
+        <input
+          name="file-upload-field"
+          type="file"
+          class="file-upload-field"
+          [value]=""
+          (change)="onFileChanged($event)"
+        />
+      </div>
+      <div>
+        <ng-select
+          [items]="drawOptions"
+          bindLabel="label"
+          placeholder="Select your tool"
+          [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="configuration.tool"
+        >
+        </ng-select>
+      </div>
+    </form>
+    <div class="file-upload-footer">
+      <button (click)="openPdfTool()">Next</button>
+    </div>
+  </div>
+</div>

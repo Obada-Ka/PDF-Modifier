@@ -1,0 +1,57 @@
+<div *ngIf="!destroy">
+  <div
+    (click)="lineSelected($event)"
+    [id]="lineNumberId"
+    [className]="lineType"
+    [ngStyle]="{
+      height: actualLength + 'px',
+      width: '3px',
+      'background-color': backgroundColor,
+      position: 'absolute',
+      top: points[points.length - 1].y1 + 'px',
+      left: points[points.length - 1].x1 + 'px',
+      transform: 'rotate(' + calc + 'deg)',
+      '-ms-transform': 'rotate(' + calc + 'deg)',
+      'transform-origin': '0% 0%',
+      '-moz-transform': 'rotate(' + calc + 'deg)',
+      '-moz-transform-origin': '0% 0%',
+      '-webkit-transform': 'rotate(' + calc + 'deg)',
+      '-webkit-transform-origin': '0% 0%',
+      '-o-transform': 'rotate(' + calc + 'deg)',
+      '-o-transform-origin': '0% 0%'
+    }"
+  >
+    <div
+      [ngStyle]="{
+        transform: 'rotate(' + beforeCalc + 'deg)',
+        position: 'fixed',
+        background: '#fff',
+        color: '#463737',
+        'font-weight': 'bold',
+        'font-size': '18px',
+        top: '44%',
+        left: -25 + 'px'
+      }"
+    >
+      <span>
+        {{ lineLength }}
+      </span>
+    </div>
+  </div>
+
+  <div
+    class="polygonal-root"
+    *ngIf="drawCircle"
+    [id]="'beginning' + setCircleId"
+    [ngStyle]="{
+      background: '#f1de2e',
+      'border-radius': '50%',
+      height: '30px',
+      width: '30px',
+      position: 'absolute',
+      top: postion.y - 12 + 'px',
+      left: postion.x - 12 + 'px',
+      'z-index': '2'
+    }"
+  ></div>
+</div>

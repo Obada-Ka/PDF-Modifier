@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { GlobalService } from '../../services/global.service';
 import { HtmlEventsService } from '../../services/html-events.service';
 import { ToolsEventsService } from '../../services/tools-events.service';
 
@@ -14,9 +15,8 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
   @Output() highlightedTexts ? = new EventEmitter<any>();
   @Output() fileIsRenderd ? = new EventEmitter<any>();
   // tslint:disable-next-line:no-input-rename
-  @Input('file') selectedFileToDrawOn: any;
   // tslint:disable-next-line:no-input-rename
-  @Input('configDrawingMode') configDrawingMode;
+  configDrawing;
   destroy: Subject<boolean> = new Subject<boolean>();
   currentFile;
   loader = false;
@@ -48,8 +48,11 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
   constructor(
     private toolsEventsService: ToolsEventsService,
     private convertToHtml: HtmlEventsService,
+    private globalService: GlobalService,
     private cd: ChangeDetectorRef
-  ) {}
+  ) {
+    this.configDrawing =  this.globalService.CONFIG_DRAW;
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -64,7 +67,7 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
   }
 
   checkIfDataReceived(): void {
-    switch (this.configDrawingMode.mode) {
+    /* switch (this.configDrawing.mode) {
       case 'Drawing': {
         const notEntered = (element) => {
           return (
@@ -73,24 +76,24 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
             typeof element.value === 'string'
           );
         };
-        if (this.configDrawingMode.data.some(notEntered)) {
+        if (this.configDrawing.data.some(notEntered)) {
           return;
         }
         this.toolsEventsService.emitExistenceShape({
-          type: this.configDrawingMode.tool.toolName,
-          data: this.configDrawingMode.data,
-          pageNumber: this.configDrawingMode.pageNumber
-            ? this.configDrawingMode.pageNumber
+          type: this.configDrawing.tool.toolName,
+          data: this.configDrawing.data,
+          pageNumber: this.configDrawing.pageNumber
+            ? this.configDrawing.pageNumber
             : null,
           specificPage: this.specificPageToShow,
           differentSelectDrawPages:
-            this.configDrawingMode.differentSelectDrawPages,
+            this.configDrawing.differentSelectDrawPages,
           selectMode: false,
         });
         break;
       }
       case 'selectText': {
-        this.configDrawingMode.data.forEach((field) => {
+        this.configDrawing.data.forEach((field) => {
           if (!field.value) {
             return;
           }
@@ -109,12 +112,11 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
           L: 'marginLeft',
           Z: 'transform',
         };
-        // tslint:disable-next-line:prefer-const
         let data = {
           marginsZoom: [],
           envelope: {},
         };
-        this.configDrawingMode.data.fields.forEach((field) => {
+        this.configDrawing.data.fields.forEach((field) => {
           if (field.value === '' && field.key.split('_')[1] !== 'Z') {
             return;
           }
@@ -130,17 +132,16 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
                 : field.value,
           });
         });
-        data.envelope = this.configDrawingMode.data.envelope;
-        /* if (!data.length) {
-          break;
-        } */
+        data.envelope = this.configDrawing.data.envelope;
         this.toolsEventsService.emitPreviewData(data);
         break;
       }
       default: {
         break;
       }
-    }
+    } */
+    console.log('config', this.configDrawing);
+
   }
 
   activateEditDrawing(): void {
@@ -170,7 +171,7 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
       return;
     }
     this.optionDraw = option;
-    if (this.configDrawingMode.mode !== 'Drawing') {
+    /* if (this.configDrawing.mode !== 'Drawing') {
       this.cd.detectChanges();
       this.toolsEventsService.emitNewTool({
         tool: option,
@@ -178,7 +179,7 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
         selectMode: true,
       });
       return;
-    }
+    } */
     this.toolsEventsService.emitNewTool({ tool: option, editMode: false });
     this.cd.detectChanges();
   }
@@ -200,7 +201,7 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
     this.fileIsRenderd.emit(true);
     setTimeout(() => {
       if (
-        !this.selectedFileToDrawOn.file.hasOwnProperty(
+        !this.configDrawing.file.hasOwnProperty(
           'startPage'
         ) /*  || this.selectedFileToDrawOn.file.startPage === 1 */
       ) {
@@ -210,7 +211,7 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
       }
       this.specificPageToShow = true;
       this.checkIfDataReceived();
-      this.changePage(this.selectedFileToDrawOn.file.startPage - 1);
+      this.changePage(this.configDrawing.file.startPage - 1);
     });
     this.cd.detectChanges();
   }
@@ -261,8 +262,8 @@ export class PdfContainerComponent implements OnInit, OnDestroy {
   }
 
   onFileChangedPDFJs(): void {
-    this.selectedFile = this.selectedFileToDrawOn;
-    this.convertToHtml.emitNewFile(1, this.selectedFileToDrawOn);
+    this.selectedFile = this.configDrawing.file;
+    this.convertToHtml.emitNewFile(1, this.configDrawing.file);
   }
 
   // Zooming Pages & Shapes

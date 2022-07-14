@@ -1,0 +1,16 @@
+<div *ngIf="!destroy" style>
+  <div
+    (click)="pointSelected($event)"
+    [id]="pointNumberId"
+    [className]="pointType"
+    [ngStyle]="{
+      'background-color': backgroundColor,
+      position: 'absolute',
+      height: '15px',
+      width: '15px',
+      'border-radius': '50%',
+      top: points[points.length - 1].y + 'px',
+      left: points[points.length - 1].x + 'px'
+    }"
+  ></div>
+</div>

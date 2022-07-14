@@ -1,3 +1,4 @@
+/* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~@ng-select/ng-select/themes/material.theme.css";
 .draw_line {
@@ -114,6 +115,38 @@
   z-index: 2;
 }
 
+.integraa-pdf-btn {
+  color: #444;
+  background-color: #fcda4b;
+  border-radius: 20px;
+  padding: 6px 17px;
+  border: 0;
+  font-size: 15px;
+  font-weight: 600;
+  min-width: 75px;
+  margin: 5px 2px;
+  text-align: center;
+  outline: none;
+}
+
+.integraa-pdf-btn::after {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
+  content: "";
+  z-index: -1;
+  border-radius: 8px;
+  outline: none;
+}
+
+.integraa-pdf-btn:hover {
+  background-color: #d3d3d3 !important;
+  background-size: 104%;
+  background-position: -2px;
+}
+
 .red {
   color: #444;
   background-color: #fc664b;
@@ -134,4 +167,177 @@
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.custom-row {
+  margin-bottom: 30px;
+}
+
+.pad-right {
+  padding-right: 0.4rem;
+}
+
+.btn-notActive {
+  pointer-events: none;
+  cursor: default;
+  background-color: #d3d3d3;
+}
+
+.btn-Active {
+  cursor: pointer;
+  background-color: #fcda4b;
+  outline: none;
+}
+
+.not-active {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.divider {
+  width: 5px;
+  height: auto;
+  display: inline-block;
+}
+
+.divider-horizontal {
+  width: 100%;
+  height: 5px;
+  margin: 10px 0px 30px 0px;
+  border-bottom: 1px solid #ddd;
+}
+
+.loader {
+  width: 100%;
+  height: 5px;
+  background-color: #e1e1e1;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.bar {
+  width: 0px;
+  height: 5px;
+  background-color: #feda44;
+  z-index: 1;
+  animation: bar 5s ease-out infinite;
+}
+
+/* Floating Label */
+
+.myInput {
+  position: relative;
+}
+
+.myInput input {
+  padding: 35px 10px 10px;
+  display: block;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.myInput input::placeholder {
+  color: transparent;
+  opacity: 0;
+  display: none;
+}
+.myInput input:focus {
+  outline: none;
+}
+.myInput input:focus ~ label,
+.myInput input:not(:placeholder-shown) ~ label {
+  top: 10px;
+  color: black;
+  font-size: 12px;
+}
+.myInput label {
+  color: black;
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 40px;
+  font-size: 17px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.has-error {
+  color: red;
+  z-index: 2;
+  font-size: 11px;
+  position: absolute;
+}
+
+.input-required {
+  border-bottom: red 1px solid !important;
+}
+
+.pagination .page-item .page-link {
+  padding: 0.5rem 0.75rem !important;
+  color: #007bff !important;
+}
+
+.page-item.active .page-link {
+  color: #fff !important;
+}
+
+.page-item.active .page-link a:link {
+  font-size: unset !important;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+@keyframes bar {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .integraa-pdf-btn {
+    font-size: 12px;
+  }
+
+  .arrow {
+    border-width: 0 2px 2px 0;
+  }
+
+  label {
+    font-size: 11px !important;
+  }
+}
+
+@media only screen and (max-width: 810px) {
+  .has-error {
+    font-size: 10px;
+  }
 }

@@ -25,6 +25,8 @@ export class PageGeneratorComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line:no-input-rename
   @Input('file') selectedFile: any;
   // tslint:disable-next-line:no-input-rename
+  @Input('mode') mode: any;
+  // tslint:disable-next-line:no-input-rename
   @ViewChild('pdfViewerOnDemand') pdfViewerOnDemand;
   covnertResult: string;
   currentPageNumber: any;
@@ -505,10 +507,6 @@ export class PageGeneratorComponent implements OnInit, OnDestroy {
   }
 
   setUpPdf(): void {
-    this.DataLoaded.emit({
-      loaded: true,
-      totalPageNumber: this.totalPageNumber,
-    });
     const iframe = document.getElementsByTagName('iframe')[0];
     if (this.selectMode) {
       this.activateSelectTextListener();
@@ -526,6 +524,10 @@ export class PageGeneratorComponent implements OnInit, OnDestroy {
       });
     this.activateListeners();
     this.checkPreviewMode();
+    this.DataLoaded.emit({
+      loaded: true,
+      totalPageNumber: this.totalPageNumber,
+    });
   }
 
   setWidthHeightIframe(iframe): void {
@@ -921,16 +923,14 @@ export class PageGeneratorComponent implements OnInit, OnDestroy {
   }
 
   getSelectedFile(): void {
-    if (this.selectedFile.file.file) {
-      this.PDFJs = this.selectedFile.file.file;
-    } else {
-      this.PDFJs = this.selectedFile.file;
+    if (this.selectedFile) {
+      this.PDFJs = this.selectedFile;
     }
     this.loader = true;
     this.openPdf(this.PDFJs);
     if (
-      this.selectedFile.status.mode === 'Drawing' ||
-      this.selectedFile.status.mode === 'Preview'
+      this.mode === 'Drawing' ||
+      this.mode === 'Preview'
     ) {
       this.selectMode = false;
       return;

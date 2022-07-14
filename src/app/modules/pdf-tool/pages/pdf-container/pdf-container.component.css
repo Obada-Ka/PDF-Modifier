@@ -1,0 +1,253 @@
+.navbar-nav .nav-item {
+  cursor: pointer;
+}
+
+.container_loader {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #eaeaf0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  align-content: center;
+}
+.flex{
+  
+}
+
+.flex {
+  min-height: 60pt;
+  position: fixed;
+  left: 48%;
+  top: 40%;
+}
+
+.load-text {
+  padding-top: 20px;
+  text-align: center;
+  font: 20pt "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: lighten(#6767fa, 75%);
+  position: relative;
+  top: 4%;
+  left: 0%;
+}
+
+.nav-link,
+.navbar-text {
+  color: #5e6263 !important;
+}
+
+.custom-style {
+  margin: 20px;
+  background-color: #f1de2e !important;
+  position: fixed;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 29px;
+  top: 9%;
+}
+
+.custom-style-minimize {
+  top: 10%;
+  z-index: 2;
+  padding: 4px 8px 4px 8px;
+  font-size: 20px;
+  margin: 20px;
+  background-color: #f1de2e !important;
+  position: fixed;
+  cursor: pointer;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 29px;
+}
+
+.close-custom {
+  border: 1px dashed #67695f !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  margin: auto;
+  width: 31px;
+  height: 31px;
+  display: flex;
+}
+
+.loading {
+  display: inline-block;
+  border-width: 30px;
+  width: 50pt;
+  height: 50pt;
+  border-radius: 50%;
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  -o-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+.style-3 {
+  border-style: double;
+  border-color: #444 #f1de2e #f1de2e;
+}
+
+#impost-misure {
+  position: fixed;
+  left: 90%;
+  top: 90%;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(359deg);
+  }
+}
+
+@-o-keyframes spin {
+  100% {
+    -moz-transform: rotate(359deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.active-action a {
+  color: red !important;
+}
+
+.drawn_shapes {
+  position: fixed;
+  z-index: 2;
+  top: 20%;
+  left: 1%;
+}
+
+.zooming-page-value {
+  width: 57px;
+  height: 36px;
+  color: black;
+  background: #d3d1c0;
+  margin-top: 1px;
+  border: none;
+}
+
+#root {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  background: #c0c0c00d;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  text-align: center;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  text-align: center;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.active.action-green {
+  color: #2ed105 !important;
+}
+
+.active.action-red {
+  color: #fc664b !important;
+}
+
+.active.action-blue {
+  color: #4b89fc !important;
+}
+
+#root {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+#root::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
+
+.ctrl {
+  width: 100%;
+  position: absolute;
+  top: -70px;
+  z-index: 2;
+}
+
+.nortification {
+  display: block;
+  font-size: 14px;
+  width: 16%;
+  padding: 5px 0;
+  position: absolute;
+  top: 0;
+  left: 47%;
+  margin-left: -90px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: #f1de2e;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.animateOpen {
+  animation: moveOpen 7s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+/* Safari and Chrome */
+@keyframes moveOpen {
+  from {
+    -webkit-transform: translate(0, -70px);
+  }
+  10% {
+    -webkit-transform: translate(0, 100px);
+  }
+  12% {
+    -webkit-transform: translate(0, 102px);
+  }
+  16% {
+    -webkit-transform: translate(0, 100px);
+  }
+  80% {
+    -webkit-transform: translate(0, 100px);
+  }
+  85% {
+    -webkit-transform: translate(0, 105px);
+  }
+  to {
+    -webkit-transform: translate(0, -70px);
+  }
+}

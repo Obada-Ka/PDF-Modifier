@@ -1,6 +1,6 @@
 <div id="root">
   <div
-    *ngIf="uploadOption && configDrawingMode.differentSelectDrawPages"
+    *ngIf="uploadOption && configDrawing.differentSelectDrawPages"
     class="ctrl"
   >
     <span class="nortification animateOpen"
@@ -8,7 +8,7 @@
     >
   </div>
   <nav
-    *ngIf="uploadOption && !toolsMini && configDrawingMode.mode != 'Preview'"
+    *ngIf="uploadOption && !toolsMini && configDrawing.tool.mode != 'Preview'"
     class="navbar sticky-top navbar-expand-lg navbar-light bg-light custom-style"
   >
     <button
@@ -24,26 +24,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <ng-container *ngIf="configDrawingMode.mode === 'Drawing'">
+        <ng-container *ngIf="configDrawing.tool.mode === 'Drawing'">
           <li
             class="nav-item"
             [ngClass]="{
               'nav-item': tools,
               disabled: !tools,
-              'active-action': optionDraw == configDrawingMode.tool.toolName
+              'active-action': optionDraw == configDrawing.tool.key
             }"
             style="border-right: 1px solid #898e7361"
           >
             <a
               class="nav-link"
-              (click)="activateDrawing(configDrawingMode.tool.toolName)"
+              (click)="activateDrawing(configDrawing.tool.key)"
               ><span style="padding: 5px" class="fa fa-ruler-combined"></span
-              >{{ configDrawingMode.tool.toolLabel }}</a
+              >{{ configDrawing.tool.label }}</a
             >
           </li>
         </ng-container>
-        <ng-container *ngIf="configDrawingMode.mode === 'selectText'">
-          <ng-container *ngFor="let type of configDrawingMode.labels">
+        <ng-container *ngIf="configDrawing.tool.mode === 'selectText'">
+          <ng-container *ngFor="let type of configDrawing.labels">
             <li
               [ngClass]="{ 'nav-item': tools, disabled: !tools }"
               (click)="activateDrawing(type.key)"
@@ -134,15 +134,16 @@
 
   <div
     [ngClass]="{
-      'drawing-mode': configDrawingMode.mode === 'Drawing',
-      'in-select-mode': configDrawingMode.mode === 'selectText',
-      'in-preview-mode': configDrawingMode.mode === 'Preview' && tools
+      'drawing-mode': configDrawing.tool.mode === 'Drawing',
+      'in-select-mode': configDrawing.tool.mode === 'selectText',
+      'in-preview-mode': configDrawing.tool.mode === 'Preview' && tools
     }"
   >
     <!-- (newPageLoaded)="checkFirstPageLoaded($event)" [scalling]="scaleXY" -->
     <app-page-generator
       (DataLoaded)="checkDataLoaded($event)"
       [file]="selectedFile"
+      [mode]="configDrawing.tool.mode"
       [scalling]="scaleXY"
     >
     </app-page-generator>
