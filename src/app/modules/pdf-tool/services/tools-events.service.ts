@@ -154,8 +154,20 @@ export class ToolsEventsService {
     this.editDrawnRectangle.emit({ rectangleId, length, pageNumber });
   }
 
-  emitNewLine({ component, length, pageNumber }): void {
-    this.drawnLine.emit({ component, length, pageNumber });
+  emitNewLine({
+    component,
+    length,
+    pageNumber,
+    existShape = null,
+    differentSelectDrawPages = false,
+  }): void {
+    this.drawnLine.emit({
+      component,
+      length,
+      pageNumber,
+      existShape,
+      differentSelectDrawPages,
+    });
   }
 
   emitNewPoint({

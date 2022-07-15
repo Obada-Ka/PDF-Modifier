@@ -64,7 +64,7 @@
   </ng2-pdfjs-viewer>
 
   <app-manage-points [eventDataPassed]="eventData" class="tool"></app-manage-points>
-  <app-manage-lines class="tool"></app-manage-lines>
+  <app-manage-lines [eventDataPassed]="eventData" class="tool"></app-manage-lines>
   <!-- <app-draw-polygonal class="tool"></app-draw-polygonal> -->
   <app-manage-rectangles
     [eventDataPassed]="eventData"
